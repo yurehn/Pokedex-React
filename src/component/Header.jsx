@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import {theme} from '../theme/theme';
+
 
 const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 18px 80px 18px 25px;
-    background-color: rgba(204, 231, 167, 0.61);
+    background-color: ${theme.navbar.background};
 `
 
 const StyledUl = styled.ul`
@@ -19,10 +21,10 @@ const StyledUl = styled.ul`
     & > a {
         font-size: 18px;
         text-decoration: none;
-        color: #3fb8e0;
+        color: ${theme.navbar.color};
 
         &:hover {
-            color: #0e7d99;
+            color: ${theme.navbar.hover};
         }
     }
   }
@@ -36,7 +38,7 @@ const StyledImg = styled.img`
 const Header = () => {
     return (
         <StyledHeader>
-            <StyledImg src='/logo_pokemon.png' alt='Pokemon Logo' title='Pokemon Logo'/>
+            <StyledImg src='/logo_pokemon.png' alt='Pokemon Logo' />
             <nav>
                 <StyledUl>
                     <li><a  href="/">Home</a></li>

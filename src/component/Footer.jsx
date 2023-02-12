@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {theme} from '../theme/theme';
+
 
 const StyledFooter = styled.footer`
     position: absolute;
@@ -9,8 +11,8 @@ const StyledFooter = styled.footer`
     height: auto;
     width: 100vw;
     padding-top: 15px;
-    color: #fff;
-    background-color: #292828;
+    color:  ${theme.footer.white};
+    background-color: ${theme.footer.background};
 `
 
 const StyledDiv = styled.div`
@@ -33,7 +35,7 @@ const StyledP = styled.p`
     margin: 10px auto;
     line-height: 20px;
     font-size: 16px;
-    color: #cacdd2
+    color: ${theme.footer.whiteGray};
 `
 
 const StyledUl = styled.ul`
@@ -46,15 +48,6 @@ const StyledUl = styled.ul`
 
     & > li {
       margin: 0 12px;
-
-      & > a {
-        text-decoration: none;
-        color: #3fb8e0;
-
-        &:hover {
-            color: #0e7d99;
-        }
-      }
     }
 `
 const StyledImg = styled.img`
@@ -74,12 +67,12 @@ const Footer = () => {
             <StyledUl>
                 <li>
                     <a target="_blank" href="https://www.linkedin.com/in/daniel-carrasco-860051213/">
-                        <StyledImg src="/logo_linkedin.png" alt="Logo Linkedin" title="Logo Linkedin" />
+                        <StyledImg src="/logo_linkedin.png" alt="Logo Linkedin" />
                     </a>
                 </li>
                 <li>
                     <a target="_blank" href="https://github.com/yurehn">
-                        <StyledImg src="/logo_github.png" alt="Logo Github" title="Logo Github" />
+                        <StyledImg src="/logo_github.png" alt="Logo Github" />
                     </a>
                 </li>
             </StyledUl>
