@@ -40,7 +40,7 @@ const StyledDiv = styled.div`
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     
     &:hover {
-        box-shadow:rgba(0, 0, 0, 0.4) 0 19px 38px 10px, rgba(0, 0, 0, 0.3) 0 15px 12px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        /* box-shadow:rgba(0, 0, 0, 0.4) 0 19px 38px 10px, rgba(0, 0, 0, 0.3) 0 15px 12px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
         transition: all 0.4s ease-in-out;
         transform: translateY(-15px) scale(1.05);
     }
