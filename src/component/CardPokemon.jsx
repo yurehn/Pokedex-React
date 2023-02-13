@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {theme} from '../theme/theme';
 
@@ -32,7 +32,7 @@ const StyledDiv = styled.div`
 
     position: relative;
     width: 210px;
-    height: 300px;
+    min-height: 300px;
     border-radius: 25px;
     padding: 10px 0px;
 
@@ -50,26 +50,29 @@ const StyledDiv = styled.div`
     }
 
     & > img {
-        margin: 10px 0px;
+        margin: 15px 0px 8px 0px;
     }
 `
 
 const StyledH3 = styled.h3`
     text-transform: capitalize;
-    margin: 8px 0px;
+    margin: 0px;
 
     font-size: 21px; 
     font-weight: 500;
     letter-spacing: 0.5px;
+
+    text-align: center;
 `
 
 const StyledDivContainerType = styled.div`
     width: 100%;
     height: 100%;
+    margin: 10px 0px;
+
     display: flex;
     row-gap: 8px;
     flex-wrap: wrap;
-
     justify-content: space-evenly;
     align-items: center;
 `
@@ -105,6 +108,18 @@ const StyledDivNum = styled.div`
     }  
 `  
 
+const StyledDiviImg = styled.div`
+    width: 170px;
+    min-height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #541313;
+` 
 const CardPokemon = ({ PokemonData }) => {
 
     const pokemonName = PokemonData.name;
@@ -117,7 +132,16 @@ const CardPokemon = ({ PokemonData }) => {
             <StyledDivNum>
                 <p>{`#${PokemonData.id.toString().padStart(3, "0")}`}</p>
             </StyledDivNum>
-            <img src={pokemonImage} alt={`Imagen ${pokemonName}`} width="170px"/>
+            
+            {
+                pokemonImage ?
+                <img src={pokemonImage} alt={`Imagen ${pokemonName}`} width="170px"/>
+                :
+                <StyledDiviImg>
+                    <p>404 Not Found</p>
+                </StyledDiviImg>  
+            }
+
             <StyledH3>{pokemonName}</StyledH3>
             <StyledDivContainerType>
                 {

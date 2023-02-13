@@ -58,10 +58,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
         let endPage = Math.min(totalPages, currentPage + Math.floor(visiblePages / 2));
         
-        // if (endPage - startPage + 1 < visiblePages && startPage > 1) {
-        //     startPage = Math.max(1, endPage - visiblePages + 1);
-        // }
-        
+    
         for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
         }
