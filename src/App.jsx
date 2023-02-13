@@ -4,15 +4,18 @@ import getPokemonList from './api/getPokemonList';
 import CardPokemon from './component/CardPokemon';
 import Pagination from './component/Pagination';
 
+const StyledDivPagination = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const StyledDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     column-gap: 38px;
     row-gap: 35px;
-    margin: 80px 80px;
-    /* opacity: 1;
-    transition: opacity 5s ease-in; */
+    margin: 80px 80px 50px 80px;
 `
 
 const StyledDivLoading = styled.div`
@@ -20,9 +23,6 @@ const StyledDivLoading = styled.div`
     justify-content: center;
     align-items: center;
     height: 75vh;
-    /* opacity: 0;
-    transition: opacity 5s ease-in; */
-    
 
     div.loader {
         width: 80px;
@@ -74,15 +74,18 @@ const App = () => {
         )
       }
     return (
-        <StyledDiv>
-            {
-                pokemonsList.map(pokemon => {
-                    return <CardPokemon key={pokemon.name} PokemonData={pokemon} />
-                })
-            }
-
-            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-        </StyledDiv>
+        <>
+            <StyledDiv>
+                {
+                    pokemonsList.map(pokemon => {
+                        return <CardPokemon key={pokemon.name} PokemonData={pokemon} />
+                    })
+                }
+            </StyledDiv>
+            <StyledDivPagination>
+                <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+            </StyledDivPagination>
+        </>
     );
 };
 

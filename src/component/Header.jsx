@@ -9,6 +9,8 @@ const StyledHeader = styled.header`
     align-items: center;
     padding: 18px 80px 18px 25px;
     background-color: ${theme.navbar.background};
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
 `
 
 const StyledUl = styled.ul`

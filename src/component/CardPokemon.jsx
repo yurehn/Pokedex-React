@@ -3,44 +3,48 @@ import styled from 'styled-components';
 import {theme} from '../theme/theme';
 
 const elementIcons = {
-    normal: '/public/element_icons/normal.svg',
-    fighting: '/public/element_icons/fighting.svg',
-    flying: '/public/element_icons/flying.svg',
-    poison: '/public/element_icons/poison.svg',
-    ground: '/public/element_icons/ground.svg',
-    rock: '/public/element_icons/rock.svg',
-    bug: '/public/element_icons/bug.svg',
-    ghost: '/public/element_icons/ghost.svg',
-    steel: '/public/element_icons/steel.svg',
-    fire: '/public/element_icons/fire.svg',
-    water: '/public/element_icons/water.svg',
-    grass: '/public/element_icons/grass.svg',
-    electric: '/public/element_icons/electric.svg',
-    psychic: '/public/element_icons/psychic.svg',
-    ice: '/public/element_icons/ice.svg',
-    dragon: '/public/element_icons/dragon.svg',
-    dark: '/public/element_icons/dark.svg',
-    fairy: '/public/element_icons/fairy.svg',
-    shadow: '/public/element_icons/ghost.svg'
+    normal: '/element_icons/normal.svg',
+    fighting: '/element_icons/fighting.svg',
+    flying: '/element_icons/flying.svg',
+    poison: '/element_icons/poison.svg',
+    ground: '/element_icons/ground.svg',
+    rock: '/element_icons/rock.svg',
+    bug: '/element_icons/bug.svg',
+    ghost: '/element_icons/ghost.svg',
+    steel: '/element_icons/steel.svg',
+    fire: '/element_icons/fire.svg',
+    water: '/element_icons/water.svg',
+    grass: '/element_icons/grass.svg',
+    electric: '/element_icons/electric.svg',
+    psychic: '/element_icons/psychic.svg',
+    ice: '/element_icons/ice.svg',
+    dragon: '/element_icons/dragon.svg',
+    dark: '/element_icons/dark.svg',
+    fairy: '/element_icons/fairy.svg',
+    shadow: '/element_icons/ghost.svg'
   };
 
 const StyledDiv = styled.div`
-    
     background-color: ${props => theme.card[props.type][0]};
     border: 2px solid ${props => theme.card[props.type][1]};
+    
+    font-family: 'Kanit', sans-serif;
 
+    position: relative;
     width: 210px;
     height: 300px;
     border-radius: 25px;
     padding: 10px 0px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     transition: all 0.4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     
     &:hover {
-        /* box-shadow:rgba(0, 0, 0, 0.4) 0 19px 38px 10px, rgba(0, 0, 0, 0.3) 0 15px 12px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+        box-shadow:rgba(0, 0, 0, 0.4) 0 19px 38px 10px, rgba(0, 0, 0, 0.3) 0 15px 12px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
         transition: all 0.4s ease-in-out;
         transform: translateY(-15px) scale(1.05);
     }
@@ -53,8 +57,8 @@ const StyledDiv = styled.div`
 const StyledH3 = styled.h3`
     text-transform: capitalize;
     margin: 8px 0px;
+
     font-size: 21px; 
-    font-family: 'Kanit', sans-serif;
     font-weight: 500;
     letter-spacing: 0.5px;
 `
@@ -85,7 +89,21 @@ const StyledDivType = styled.div`
         height: 20px;
     }
 `
+const StyledDivNum = styled.div`
 
+    position: absolute;
+    top: -15px;
+    background-color: #d3d3d3  ;
+    border: 1px solid #0091c9;
+    padding: 2px 8px;
+    border-radius: 8px;
+
+    font-weight: 400;
+
+    p {
+        margin: 0px;
+    }  
+`  
 
 const CardPokemon = ({ PokemonData }) => {
 
@@ -96,9 +114,11 @@ const CardPokemon = ({ PokemonData }) => {
     return (
         
         <StyledDiv type={pokemonType}>
+            <StyledDivNum>
+                <p>{`#${PokemonData.id.toString().padStart(3, "0")}`}</p>
+            </StyledDivNum>
             <img src={pokemonImage} alt={`Imagen ${pokemonName}`} width="170px"/>
             <StyledH3>{pokemonName}</StyledH3>
-            {/* <p>{`#00${PokemonData.id}`}</p> */}
             <StyledDivContainerType>
                 {
                     PokemonData.types.map((pokemonType) => {
