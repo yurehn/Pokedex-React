@@ -24,7 +24,7 @@ const elementIcons = {
     shadow: '/element_icons/ghost.svg'
   };
 
-const StyledDiv = styled.div`
+const Container = styled.div`
     background-color: ${props => theme.card[props.type][0]};
     border: 2px solid ${props => theme.card[props.type][1]};
     
@@ -54,7 +54,7 @@ const StyledDiv = styled.div`
     }
 `
 
-const StyledH3 = styled.h3`
+const NamePokemon = styled.h3`
     text-transform: capitalize;
     margin: 0px;
 
@@ -65,7 +65,7 @@ const StyledH3 = styled.h3`
     text-align: center;
 `
 
-const StyledDivContainerType = styled.div`
+const ContainerElements = styled.div`
     width: 100%;
     height: 100%;
     margin: 10px 0px;
@@ -92,11 +92,11 @@ const StyledDivType = styled.div`
         height: 20px;
     }
 `
-const StyledDivNum = styled.div`
 
+const NumberPokemon = styled.div`
     position: absolute;
     top: -15px;
-    background-color: #d3d3d3  ;
+    background-color: #d3d3d3;
     border: 1px solid #0091c9;
     padding: 2px 8px;
     border-radius: 8px;
@@ -108,7 +108,7 @@ const StyledDivNum = styled.div`
     }  
 `  
 
-const StyledDiviImg = styled.div`
+const TextErrorImg = styled.div`
     width: 170px;
     min-height: 170px;
 
@@ -120,30 +120,31 @@ const StyledDiviImg = styled.div`
     font-weight: 500;
     color: #541313;
 ` 
+
 const CardPokemon = ({ PokemonData }) => {
 
-    const pokemonName = PokemonData.name;
-    const pokemonType = PokemonData.types[0].type.name;
+    const Name = PokemonData.name;
+    const firsPokemonType = PokemonData.types[0].type.name;
     const pokemonImage = PokemonData.sprites.other['official-artwork'].front_default;
     
     return (
         
-        <StyledDiv type={pokemonType}>
-            <StyledDivNum>
+        <Container type={firsPokemonType}>
+            <NumberPokemon>
                 <p>{`#${PokemonData.id.toString().padStart(3, "0")}`}</p>
-            </StyledDivNum>
+            </NumberPokemon>
             
             {
                 pokemonImage ?
-                <img src={pokemonImage} alt={`Imagen ${pokemonName}`} width="170px"/>
+                <img src={pokemonImage} alt={`Imagen ${Name}`} width="170px"/>
                 :
-                <StyledDiviImg>
+                <TextErrorImg>
                     <p>404 Not Found</p>
-                </StyledDiviImg>  
+                </TextErrorImg>  
             }
 
-            <StyledH3>{pokemonName}</StyledH3>
-            <StyledDivContainerType>
+            <NamePokemon>{Name}</NamePokemon>
+            <ContainerElements>
                 {
                     PokemonData.types.map((pokemonType) => {
                         const element = pokemonType.type.name;
@@ -155,8 +156,8 @@ const CardPokemon = ({ PokemonData }) => {
                         )
                     })
                 }
-            </StyledDivContainerType>
-        </StyledDiv>
+            </ContainerElements>
+        </Container>
     );
 };
 

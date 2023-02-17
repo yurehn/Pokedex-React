@@ -1,5 +1,13 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+
+
+const StyledDivPagination = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`
 
 const StyledUl = styled.ul`
   display: flex;
@@ -18,7 +26,7 @@ const StyledUl = styled.ul`
   p {
     margin: 0px;
   }
-`;
+`
 
 const StyledLi = styled.li`
     font-size: 16px;
@@ -48,6 +56,7 @@ const PageNumber  = styled(StyledLi)`
 const PrevNext = styled(StyledLi)`
     padding: 0 12px;
 `
+
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
     const visiblePages = 5;
@@ -81,39 +90,43 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           
           
     };
+
     const handleClick = (value) => {
         setCurrentPage(value)
     }
 
-    return (
-        <StyledUl>
-            {
-                currentPage !== 1 && (
-                    <PrevNext onClick={() => handleClick(currentPage - 1)}>Prev</PrevNext>
-                )
-            }
-            
-            {
-                getPageNumbers().map(page => {
-                    if (page === "...") {
-                        return <p>...</p>;
-                    }
-                    return (
-                        <PageNumber key={page} className={currentPage === page ? 'active' : ''} onClick={() => handleClick(page)}>
-                            <li>{page}</li>
-                        </PageNumber>
-                    )
-                })
-            }
 
-            {
-                currentPage !== totalPages && (
-                    <PrevNext onClick={() => handleClick(currentPage + 1)}>Next</PrevNext>
-                )
-            }
-            
-        </StyledUl>
-    )
-}
+    return (
+        <StyledDivPagination>
+            <StyledUl>
+                {
+                    currentPage !== 1 && (
+                        <PrevNext onClick={() => handleClick(currentPage - 1)}>Prev</PrevNext>
+                    )
+                }
+                
+                {
+                    getPageNumbers().map(page => {
+                        if (page === "...") {
+                            return <p>...</p>;
+                        }
+                        return (
+                            <PageNumber key={page} className={currentPage === page ? 'active' : ''} onClick={() => handleClick(page)}>
+                                <li>{page}</li>
+                            </PageNumber>
+                        )
+                    })
+                }
+
+                {
+                    currentPage !== totalPages && (
+                        <PrevNext onClick={() => handleClick(currentPage + 1)}>Next</PrevNext>
+                    )
+                }
+                
+            </StyledUl>
+        </StyledDivPagination>
+    );
+};
 
 export default Pagination;

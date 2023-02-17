@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import getPokemonList from './api/getPokemonList';
+import getPokemonName from './api/getPokemonName';
+import SearchPokemon from './component/SearchPokemon';
 import CardPokemon from './component/CardPokemon';
 import Pagination from './component/Pagination';
 
-const StyledDivPagination = styled.div`
-    display: flex;
-    justify-content: center;
-`
 
-const StyledDiv = styled.div`
+const ContainerPokemons = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     column-gap: 38px;
     row-gap: 35px;
     margin: 80px 80px 50px 80px;
+
+    @media (max-width: 500px) {
+      margin: 80px 10px 50px 10px;
+    }
 `
 
-const StyledDivLoading = styled.div`
+const LoadingBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +49,11 @@ const StyledDivLoading = styled.div`
     }
 `
 
+
 const App = () => {
+
+    const [valueSearch, setValueSearch] = useState('');
+    const [searchError, setSearchError] = useState(false);
 
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -57,34 +63,55 @@ const App = () => {
 
     useEffect(() => {
         setLoading(true)
-        getPokemonList(currentPage).then(({ pokemonsData, totalPages }) => {
-            setPokemonsList(pokemonsData);
-            setTotalPages(totalPages);
-            setLoading(false);
-        });
+        setSearchError(false)
+
+        if (valueSearch !== '') {
+            
+            getPokemonName(valueSearch).then(response => {
+                if (response !== undefined) {
+                    setPokemonsList([response]);
+                    setTotalPages(1);
+                    setLoading(false);
+
+                } else{
+                    setLoading(false)
+                    setSearchError(true)
+                }
+            });
+        } else {
+            getPokemonList(currentPage).then(({ pokemonsData, totalPages }) => {
+                setPokemonsList(pokemonsData);
+                setTotalPages(totalPages);
+                setLoading(false);
+            });
+        }
        
-    }, [currentPage]);
+    }, [currentPage, valueSearch]);
     
 
-    if (loading) {
-        return (
-            <StyledDivLoading>
-              <div className='loader'></div>
-            </StyledDivLoading>
-        )
-      }
     return (
         <>
-            <StyledDiv>
-                {
-                    pokemonsList.map(pokemon => {
-                        return <CardPokemon key={pokemon.name} PokemonData={pokemon} />
-                    })
-                }
-            </StyledDiv>
-            <StyledDivPagination>
-                <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-            </StyledDivPagination>
+            <SearchPokemon setValueSearch={setValueSearch} searchError={searchError} setSearchError={setSearchError}/>
+
+            {
+               loading ?
+                    <LoadingBox>
+                        <div className='loader'></div>
+                    </LoadingBox>
+                :
+                    <>
+                        <ContainerPokemons>
+                            {
+                                pokemonsList.map(pokemon => {
+                                    return <CardPokemon key={pokemon.name} PokemonData={pokemon} />
+                                })
+                            }
+                        </ContainerPokemons>
+
+                        <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                    </>
+            }
+
         </>
     );
 };
