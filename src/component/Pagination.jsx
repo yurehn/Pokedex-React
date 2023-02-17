@@ -42,6 +42,13 @@ const StyledLi = styled.li`
         color: #ffffff;
         background-color: #8fbc8f;
     }
+
+    @media (max-width: 400px) {
+        width: 39px;
+        height: 39px;
+        line-height: 39px;
+        font-size: 16px;
+    }
 `
 
 const PageNumber  = styled(StyledLi)`
@@ -55,6 +62,10 @@ const PageNumber  = styled(StyledLi)`
 
 const PrevNext = styled(StyledLi)`
     padding: 0 12px;
+
+    @media (max-width: 400px) {
+        padding: 0 5px;
+    }
 `
 
 
