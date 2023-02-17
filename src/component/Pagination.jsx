@@ -59,8 +59,12 @@ const PrevNext = styled(StyledLi)`
 
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-    const visiblePages = 5;
-    
+    let visiblePages = 5;
+
+    if (screen.width < 450) {
+        visiblePages = 3;
+    }
+        
     const getPageNumbers = () => {
         
         let pages = [];
@@ -86,15 +90,13 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
             pages.push(totalPages);
         }
         
-        return pages;
-          
+        return pages;  
           
     };
 
     const handleClick = (value) => {
         setCurrentPage(value)
     }
-
 
     return (
         <StyledDivPagination>
